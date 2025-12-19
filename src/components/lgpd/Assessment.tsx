@@ -3,7 +3,7 @@ import SectionHeader from './SectionHeader';
 import AssessmentQuestion from './AssessmentQuestion';
 
 interface Question {
-  id: number;
+  id: string;
   question: string;
   answered: boolean;
   compliant: boolean;
@@ -11,7 +11,7 @@ interface Question {
 
 interface AssessmentProps {
   questions: Question[];
-  onAnswer: (id: number, answer: boolean) => void;
+  onAnswer: (id: string, answer: boolean) => void;
 }
 
 const Assessment = ({ questions, onAnswer }: AssessmentProps) => {

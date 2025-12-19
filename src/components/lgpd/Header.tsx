@@ -1,11 +1,12 @@
-import { Shield, Bell, User } from 'lucide-react';
+import { Shield, Bell, User, LogOut } from 'lucide-react';
 
 interface HeaderProps {
   companyName: string;
   planType: string;
+  onLogout?: () => void;
 }
 
-const Header = ({ companyName, planType }: HeaderProps) => {
+const Header = ({ companyName, planType, onLogout }: HeaderProps) => {
   return (
     <header className="bg-card rounded-2xl shadow-card p-5 mb-6 animate-slide-up">
       <div className="flex items-center justify-between">
@@ -28,7 +29,7 @@ const Header = ({ companyName, planType }: HeaderProps) => {
             <Bell className="w-5 h-5 text-muted-foreground" />
             <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-accent rounded-full animate-pulse-soft" />
           </button>
-          
+
           <div className="hidden md:flex items-center gap-3 pl-3 border-l border-border">
             <div className="text-right">
               <p className="text-sm font-medium text-foreground">{companyName}</p>
@@ -38,6 +39,16 @@ const Header = ({ companyName, planType }: HeaderProps) => {
               <User className="w-5 h-5 text-primary-foreground" />
             </div>
           </div>
+
+          {onLogout && (
+            <button
+              onClick={onLogout}
+              className="p-2.5 rounded-xl bg-muted hover:bg-destructive/10 hover:text-destructive transition-colors"
+              title="Sair"
+            >
+              <LogOut className="w-5 h-5" />
+            </button>
+          )}
         </div>
       </div>
     </header>

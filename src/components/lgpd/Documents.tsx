@@ -3,7 +3,7 @@ import SectionHeader from './SectionHeader';
 import DocumentCard from './DocumentCard';
 
 interface Document {
-  id: number;
+  id: string;
   name: string;
   status: 'available' | 'pending';
   sector: string;
@@ -12,9 +12,10 @@ interface Document {
 interface DocumentsProps {
   documents: Document[];
   sector: string;
+  onGenerateDocument?: (documentId: string) => void;
 }
 
-const Documents = ({ documents, sector }: DocumentsProps) => {
+const Documents = ({ documents, sector, onGenerateDocument }: DocumentsProps) => {
   return (
     <div className="space-y-6">
       <SectionHeader
@@ -43,7 +44,7 @@ const Documents = ({ documents, sector }: DocumentsProps) => {
             name={doc.name}
             sector={doc.sector}
             status={doc.status}
-            onAction={() => console.log(`Action for ${doc.id}`)}
+            onAction={() => onGenerateDocument?.(doc.id)}
             delay={150 + index * 100}
           />
         ))}
